@@ -1,0 +1,82 @@
+/* Medizinisches/Klassisches Design */
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.login-container {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+}
+
+.app-title {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-weight: bold;
+}
+
+.app-subtitle {
+    -fx-text-fill: #666666;
+    -fx-font-size: 14px;
+}
+
+.primary-button {
+    -fx-background-color: #2c5aa0;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1e3d6f;
+}
+
+.text-field, .password-field {
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 3px;
+}
+
+/* Dashboard Styles */
+.dashboard-title {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-weight: bold;
+}
+
+.dashboard-subtitle {
+    -fx-text-fill: #666666;
+    -fx-font-size: 16px;
+}
+
+.dashboard-button {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+    -fx-font-size: 14px;
+}
+
+.dashboard-button:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+/* Status Bar */
+.status-bar {
+    -fx-background-color: #f0f0f0;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* Tab Pane */
+.tab-pane {
+    -fx-background-color: white;
+}
+
+.tab {
+    -fx-background-color: #f0f0f0;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+}

@@ -1,0 +1,7 @@
+ch/medisys/controller/LoginController.class
+ch/medisys/util/DatabaseConnection.class
+ch/medisys/util/PasswordHashGenerator.class
+ch/medisys/util/SessionManager.class
+ch/medisys/Main.class
+ch/medisys/util/FixPasswords.class
+ch/medisys/controller/MainWindowController.class

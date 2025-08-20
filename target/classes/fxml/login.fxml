@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="ch.medisys.controller.LoginController"
+      styleClass="login-container">
+    
+    <Label text="MediSys" styleClass="app-title">
+        <font>
+            <Font size="24.0" />
+        </font>
+    </Label>
+    
+    <Label text="Praxisverwaltungssystem" styleClass="app-subtitle" />
+    
+    <VBox spacing="10.0" maxWidth="250">
+        <TextField fx:id="emailField" promptText="E-Mail" />
+        <PasswordField fx:id="passwordField" promptText="Passwort" />
+    </VBox>
+    
+    <Button fx:id="loginButton" text="Anmelden" onAction="#handleLogin" 
+            prefWidth="250" styleClass="primary-button" />
+    
+    <Label fx:id="errorLabel" textFill="RED" visible="false" />
+    
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+</VBox>

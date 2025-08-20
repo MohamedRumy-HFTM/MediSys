@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="ch.medisys.controller.MainWindowController"
+            prefHeight="800" prefWidth="1200">
+    
+    <!-- Menüleiste -->
+    <top>
+        <MenuBar>
+            <Menu text="Datei">
+                <MenuItem text="Abmelden" onAction="#handleLogout"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="Beenden" onAction="#handleExit"/>
+            </Menu>
+            <Menu text="Patienten">
+                <MenuItem text="Patientenliste" onAction="#showPatients"/>
+                <MenuItem text="Neuer Patient" onAction="#newPatient"/>
+            </Menu>
+            <Menu text="Termine">
+                <MenuItem text="Terminkalender" onAction="#showAppointments"/>
+                <MenuItem text="Neuer Termin" onAction="#newAppointment"/>
+            </Menu>
+            <Menu text="Behandlungen">
+                <MenuItem text="Behandlungsübersicht" onAction="#showTreatments"/>
+            </Menu>
+            <Menu text="Abrechnung">
+                <MenuItem text="Rechnungen" onAction="#showInvoices"/>
+                <MenuItem text="Leistungskatalog" onAction="#showServices"/>
+            </Menu>
+            <Menu text="Verwaltung" fx:id="adminMenu">
+                <MenuItem text="Mitarbeiter" onAction="#showEmployees"/>
+                <MenuItem text="Medikamente" onAction="#showMedications"/>
+            </Menu>
+            <Menu text="Hilfe">
+                <MenuItem text="Über MediSys" onAction="#showAbout"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    
+    <!-- Hauptbereich -->
+    <center>
+        <TabPane fx:id="mainTabPane" tabClosingPolicy="ALL_TABS">
+            <!-- Dashboard Tab (kann nicht geschlossen werden) -->
+            <Tab text="Dashboard" closable="false">
+                <VBox alignment="CENTER" spacing="20">
+                    <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </padding>
+                    
+                    <Label text="Willkommen bei MediSys" styleClass="dashboard-title">
+                        <font>
+                            <Font size="24.0"/>
+                        </font>
+                    </Label>
+                    
+                    <Label fx:id="welcomeLabel" styleClass="dashboard-subtitle"/>
+                    
+                    <!-- Schnellzugriff Buttons -->
+                    <HBox alignment="CENTER" spacing="20">
+                        <VBox alignment="CENTER" spacing="10">
+                            <Button text="Neue Patienten" prefWidth="150" prefHeight="100" 
+                                    onAction="#newPatient" styleClass="dashboard-button"/>
+                            <Label text="Patient erfassen"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10">
+                            <Button text="Terminkalender" prefWidth="150" prefHeight="100" 
+                                    onAction="#showAppointments" styleClass="dashboard-button"/>
+                            <Label text="Termine verwalten"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10">
+                            <Button text="Behandlungen" prefWidth="150" prefHeight="100" 
+                                    onAction="#showTreatments" styleClass="dashboard-button"/>
+                            <Label text="Dokumentation"/>
+                        </VBox>
+                        <VBox alignment="CENTER" spacing="10">
+                            <Button text="Rechnungen" prefWidth="150" prefHeight="100" 
+                                    onAction="#showInvoices" styleClass="dashboard-button"/>
+                            <Label text="Abrechnung"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Statistik-Bereich -->
+                    <GridPane hgap="20" vgap="10" alignment="CENTER">
+                        <Label text="Heutige Termine:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label fx:id="todayAppointmentsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                        
+                        <Label text="Offene Rechnungen:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <Label fx:id="openInvoicesLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        
+                        <Label text="Anzahl Patienten:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <Label fx:id="totalPatientsLabel" text="0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                    </GridPane>
+                </VBox>
+            </Tab>
+        </TabPane>
+    </center>
+    
+    <!-- Statusleiste -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Bereit"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="userLabel" text="Angemeldet als: "/>
+            <Label fx:id="timeLabel" text=""/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>
