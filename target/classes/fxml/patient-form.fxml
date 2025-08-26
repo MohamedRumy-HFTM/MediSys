@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="ch.medisys.controller.PatientFormController"
+      spacing="15" prefWidth="600">
+    
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    
+    <Label text="Patientendaten" styleClass="form-title">
+        <font>
+            <Font size="18.0" />
+        </font>
+    </Label>
+    
+    <TabPane>
+        <!-- Persönliche Daten -->
+        <Tab text="Persönliche Daten" closable="false">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                
+                <Label text="Vorname:*" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="vornameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Nachname:*" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="nachnameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="Geburtsdatum:*" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <DatePicker fx:id="geburtsdatumPicker" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="200"/>
+                
+                <Label text="Geschlecht:*" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <RadioButton fx:id="geschlechtM" text="Männlich">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="geschlechtGroup"/>
+                        </toggleGroup>
+                    </RadioButton>
+                    <RadioButton fx:id="geschlechtW" text="Weiblich" toggleGroup="$geschlechtGroup"/>
+                    <RadioButton fx:id="geschlechtD" text="Divers" toggleGroup="$geschlechtGroup"/>
+                </HBox>
+                
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+            </GridPane>
+        </Tab>
+        
+        <!-- Kontaktdaten -->
+        <Tab text="Kontaktdaten" closable="false">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                
+                <Label text="Strasse:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="strasseField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="PLZ:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="plzField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="100" maxWidth="100"/>
+                
+                <Label text="Ort:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="ortField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                
+                <Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                <TextField fx:id="telefonField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                
+                <Label text="E-Mail:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+            </GridPane>
+        </Tab>
+        
+        <!-- Versicherungsdaten -->
+        <Tab text="Versicherung" closable="false">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                
+                <Label text="Versicherungsnr.:*" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="versicherungsnummerField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Krankenkasse:*" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <ComboBox fx:id="krankenkasseCombo" GridPane.columnIndex="1" GridPane.rowIndex="1" editable="true" prefWidth="250"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+            </GridPane>
+        </Tab>
+        
+        <!-- Notfallkontakt -->
+        <Tab text="Notfallkontakt" closable="false">
+            <GridPane hgap="10" vgap="10">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                
+                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="notfallkontaktNameField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="notfallkontaktTelefonField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" minWidth="120"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+            </GridPane>
+        </Tab>
+    </TabPane>
+    
+    <Separator/>
+    
+    <Label text="* Pflichtfelder" styleClass="hint-label"/>
+    
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Abbrechen" onAction="#handleCancel"/>
+        <Button text="Speichern" onAction="#handleSave" styleClass="primary-button"/>
+    </HBox>
+    
+</VBox>

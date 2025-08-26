@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="ch.medisys.controller.PatientListController"
+      spacing="10" prefWidth="1000" prefHeight="600">
+    
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+    
+    <!-- Toolbar -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Suchen..." prefWidth="300"/>
+        <Button text="Suchen" onAction="#handleSearch"/>
+        <Button text="Alle anzeigen" onAction="#handleShowAll"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Neuer Patient" onAction="#handleNewPatient" styleClass="primary-button"/>
+    </HBox>
+    
+    <!-- Tabelle -->
+    <TableView fx:id="patientTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nachnameColumn" text="Nachname" prefWidth="120"/>
+            <TableColumn fx:id="vornameColumn" text="Vorname" prefWidth="120"/>
+            <TableColumn fx:id="geburtsdatumColumn" text="Geburtsdatum" prefWidth="100"/>
+            <TableColumn fx:id="alterColumn" text="Alter" prefWidth="60"/>
+            <TableColumn fx:id="geschlechtColumn" text="Geschl." prefWidth="60"/>
+            <TableColumn fx:id="telefonColumn" text="Telefon" prefWidth="120"/>
+            <TableColumn fx:id="emailColumn" text="E-Mail" prefWidth="180"/>
+            <TableColumn fx:id="krankenkasseColumn" text="Krankenkasse" prefWidth="120"/>
+            <TableColumn fx:id="aktionenColumn" text="Aktionen" prefWidth="150"/>
+        </columns>
+        <placeholder>
+            <Label text="Keine Patienten gefunden"/>
+        </placeholder>
+    </TableView>
+    
+    <!-- Statusleiste -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label fx:id="statusLabel" text="0 Patienten geladen"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Aktualisieren" onAction="#handleRefresh"/>
+    </HBox>
+    
+</VBox>

@@ -12,7 +12,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Modality;
 import javafx.util.Duration;
+import ch.medisys.controller.PatientFormController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -113,14 +115,75 @@ public class MainWindowController {
     
     @FXML
     private void showPatients() {
-        statusLabel.setText("Patientenverwaltung wird geladen...");
-        // TODO: Implementierung
+        try {
+            statusLabel.setText("Patientenverwaltung wird geladen...");
+
+            // Prüfe ob Tab bereits offen ist
+            for (Tab tab : mainTabPane.getTabs()) {
+                if ("Patientenverwaltung".equals(tab.getText())) {
+                    mainTabPane.getSelectionModel().select(tab);
+                    return;
+                }
+            }
+
+            // Lade Patientenliste
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/patient-list.fxml"));
+            Parent root = loader.load();
+
+            // Erstelle neuen Tab
+            Tab patientTab = new Tab("Patientenverwaltung");
+            patientTab.setContent(root);
+            patientTab.setClosable(true);
+
+            // Füge Tab hinzu und wähle es aus
+            mainTabPane.getTabs().add(patientTab);
+            mainTabPane.getSelectionModel().select(patientTab);
+
+            statusLabel.setText("Patientenverwaltung geladen");
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Fehler beim Laden der Patientenverwaltung");
+            showError("Fehler", "Patientenverwaltung konnte nicht geladen werden: " + e.getMessage());
+        }
     }
     
     @FXML
     private void newPatient() {
-        statusLabel.setText("Neuer Patient wird erfasst...");
-        // TODO: Implementierung
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/patient-form.fxml"));
+            Parent root = loader.load();
+
+            PatientFormController controller = loader.getController();
+            controller.setNewPatientMode();
+
+            Stage stage = new Stage();
+            stage.setTitle("Neuer Patient");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            // Wenn gespeichert wurde und Patientenliste offen ist, aktualisiere sie
+            if (controller.isSaved()) {
+                for (Tab tab : mainTabPane.getTabs()) {
+                    if ("Patientenverwaltung".equals(tab.getText())) {
+                        // Patientenliste neu laden (falls offen)
+                        showPatients();
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Fehler", "Formular konnte nicht geladen werden.");
+        }
+    }
+
+    private void showError(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
     
     @FXML

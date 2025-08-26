@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="ch.medisys.controller.PatientDetailController"
+            fitToWidth="true" prefWidth="700" prefHeight="600">
+    
+    <VBox spacing="20">
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        </padding>
+        
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox>
+                <Label fx:id="nameLabel" styleClass="patient-name">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                </Label>
+                <Label fx:id="patientIdLabel" styleClass="patient-id"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Bearbeiten" onAction="#handleEdit" styleClass="primary-button"/>
+        </HBox>
+        
+        <Separator/>
+        
+        <!-- Persönliche Daten -->
+        <VBox spacing="10">
+            <Label text="Persönliche Daten" styleClass="section-title">
+                <font>
+                    <Font size="16.0" weight="BOLD"/>
+                </font>
+            </Label>
+            <GridPane hgap="15" vgap="8">
+                <Label text="Geburtsdatum:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="geburtsdatumLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Alter:" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="alterLabel" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                
+                <Label text="Geschlecht:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="field-label"/>
+                <Label fx:id="geschlechtLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="150"/>
+                    <ColumnConstraints minWidth="80"/>
+                    <ColumnConstraints minWidth="100"/>
+                </columnConstraints>
+            </GridPane>
+        </VBox>
+        
+        <!-- Kontaktdaten -->
+        <VBox spacing="10">
+            <Label text="Kontaktdaten" styleClass="section-title">
+                <font>
+                    <Font size="16.0" weight="BOLD"/>
+                </font>
+            </Label>
+            <GridPane hgap="15" vgap="8">
+                <Label text="Adresse:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="adresseLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.columnSpan="3"/>
+                
+                <Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="field-label"/>
+                <Label fx:id="telefonLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="E-Mail:" GridPane.columnIndex="2" GridPane.rowIndex="1" styleClass="field-label"/>
+                <Hyperlink fx:id="emailLink" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="150"/>
+                    <ColumnConstraints minWidth="80"/>
+                    <ColumnConstraints minWidth="200"/>
+                </columnConstraints>
+            </GridPane>
+        </VBox>
+        
+        <!-- Versicherungsdaten -->
+        <VBox spacing="10">
+            <Label text="Versicherungsdaten" styleClass="section-title">
+                <font>
+                    <Font size="16.0" weight="BOLD"/>
+                </font>
+            </Label>
+            <GridPane hgap="15" vgap="8">
+                <Label text="Versicherungsnr.:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="versicherungsnummerLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Krankenkasse:" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="krankenkasseLabel" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="150"/>
+                    <ColumnConstraints minWidth="100"/>
+                    <ColumnConstraints minWidth="150"/>
+                </columnConstraints>
+            </GridPane>
+        </VBox>
+        
+        <!-- Notfallkontakt -->
+        <VBox spacing="10">
+            <Label text="Notfallkontakt" styleClass="section-title">
+                <font>
+                    <Font size="16.0" weight="BOLD"/>
+                </font>
+            </Label>
+            <GridPane hgap="15" vgap="8">
+                <Label text="Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="notfallkontaktNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="Telefon:" GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="field-label"/>
+                <Label fx:id="notfallkontaktTelefonLabel" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+                
+                <columnConstraints>
+                    <ColumnConstraints minWidth="120"/>
+                    <ColumnConstraints minWidth="200"/>
+                    <ColumnConstraints minWidth="80"/>
+                    <ColumnConstraints minWidth="150"/>
+                </columnConstraints>
+            </GridPane>
+        </VBox>
+        
+        <Separator/>
+        
+        <!-- Aktions-Buttons -->
+        <HBox spacing="10">
+            <Button text="Termine anzeigen" onAction="#handleShowAppointments"/>
+            <Button text="Behandlungen anzeigen" onAction="#handleShowTreatments"/>
+            <Button text="Dokumente" onAction="#handleShowDocuments"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Schließen" onAction="#handleClose"/>
+        </HBox>
+        
+    </VBox>
+</ScrollPane>

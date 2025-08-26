@@ -80,3 +80,86 @@
 .tab:selected {
     -fx-background-color: white;
 }
+
+/* Patienten-Styles */
+.form-title {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-weight: bold;
+}
+
+.section-title {
+    -fx-text-fill: #1e3d6f;
+    -fx-font-weight: bold;
+}
+
+.field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #666666;
+}
+
+.patient-name {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-weight: bold;
+}
+
+.patient-id {
+    -fx-text-fill: #999999;
+    -fx-font-size: 12px;
+}
+
+.hint-label {
+    -fx-text-fill: #999999;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+}
+
+/* Tabellen-Styles */
+.table-view {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+}
+
+.table-view .column-header {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: black;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+/* Tab-Styles */
+.tab-pane .tab-header-area {
+    -fx-background-color: #f0f0f0;
+}
+
+.tab {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 5 15 5 15;
+}
+
+.tab:selected {
+    -fx-background-color: white;
+    -fx-border-color: #cccccc #cccccc white #cccccc;
+}
+
+/* Formular-Styles */
+.text-field:focused, .text-area:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #2c5aa0;
+    -fx-border-width: 2px;
+}
+
+.radio-button {
+    -fx-padding: 5px;
+}
+
+/* Validierungsfehler */
+.text-field:error, .combo-box:error, .date-picker:error {
+    -fx-border-color: red;
+    -fx-border-width: 2px;
+}
