@@ -15,11 +15,14 @@ import javafx.stage.Stage;
 import javafx.stage.Modality;
 import javafx.util.Duration;
 import ch.medisys.controller.PatientFormController;
+import ch.medisys.controller.AppointmentCalendarController;
+import ch.medisys.controller.AppointmentFormController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -185,17 +188,70 @@ public class MainWindowController {
         alert.setContentText(content);
         alert.showAndWait();
     }
-    
+
     @FXML
     private void showAppointments() {
-        statusLabel.setText("Terminkalender wird geladen...");
-        // TODO: Implementierung
+        try {
+            statusLabel.setText("Terminkalender wird geladen...");
+
+            // Prüfe ob Tab bereits offen ist
+            for (Tab tab : mainTabPane.getTabs()) {
+                if ("Terminkalender".equals(tab.getText())) {
+                    mainTabPane.getSelectionModel().select(tab);
+                    return;
+                }
+            }
+
+            // Lade Terminkalender
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/appointment-calendar.fxml"));
+            Parent root = loader.load();
+
+            // Erstelle neuen Tab
+            Tab appointmentTab = new Tab("Terminkalender");
+            appointmentTab.setContent(root);
+            appointmentTab.setClosable(true);
+
+            // Füge Tab hinzu und wähle es aus
+            mainTabPane.getTabs().add(appointmentTab);
+            mainTabPane.getSelectionModel().select(appointmentTab);
+
+            statusLabel.setText("Terminkalender geladen");
+        } catch (Exception e) {
+            e.printStackTrace();
+            statusLabel.setText("Fehler beim Laden des Terminkalenders");
+            showError("Fehler", "Terminkalender konnte nicht geladen werden: " + e.getMessage());
+        }
     }
-    
+
     @FXML
     private void newAppointment() {
-        statusLabel.setText("Neuer Termin wird erstellt...");
-        // TODO: Implementierung
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/appointment-form.fxml"));
+            Parent root = loader.load();
+
+            AppointmentFormController controller = loader.getController();
+            controller.setNewAppointmentMode(LocalDate.now());
+
+            Stage stage = new Stage();
+            stage.setTitle("Neuer Termin");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            // Wenn gespeichert wurde und Terminkalender offen ist, aktualisiere ihn
+            if (controller.isSaved()) {
+                for (Tab tab : mainTabPane.getTabs()) {
+                    if ("Terminkalender".equals(tab.getText())) {
+                        // Kalender neu laden
+                        showAppointments();
+                        break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showError("Fehler", "Formular konnte nicht geladen werden.");
+        }
     }
     
     @FXML

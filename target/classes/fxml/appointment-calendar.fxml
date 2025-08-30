@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="ch.medisys.controller.AppointmentCalendarController"
+            prefWidth="1100" prefHeight="700">
+    
+    <!-- Toolbar -->
+    <top>
+        <VBox spacing="10">
+            <ToolBar>
+                <Button text="◀" onAction="#handlePreviousMonth" fx:id="prevButton"/>
+                <Button text="▶" onAction="#handleNextMonth" fx:id="nextButton"/>
+                <Label fx:id="monthYearLabel" styleClass="calendar-month-label">
+                    <font>
+                        <Font size="16.0" name="System Bold"/>
+                    </font>
+                </Label>
+                <Separator orientation="VERTICAL"/>
+                <Button text="Heute" onAction="#handleToday"/>
+                <Separator orientation="VERTICAL"/>
+                <ToggleButton fx:id="monthViewButton" text="Monat" selected="true">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="viewGroup"/>
+                    </toggleGroup>
+                </ToggleButton>
+                <ToggleButton fx:id="weekViewButton" text="Woche" toggleGroup="$viewGroup"/>
+                <ToggleButton fx:id="dayViewButton" text="Tag" toggleGroup="$viewGroup"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Neuer Termin" onAction="#handleNewAppointment" styleClass="primary-button"/>
+                <Button text="Exportieren" onAction="#handleExportCalendar" prefWidth="100">
+                    <HBox.margin>
+                        <Insets left="5"/>
+                    </HBox.margin>
+                </Button>
+            </ToolBar>
+            
+            <!-- Filter-Bereich -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+                <Label text="Mitarbeiter:"/>
+                <ComboBox fx:id="mitarbeiterFilter" prefWidth="200"/>
+                <Label text="Terminart:"/>
+                <ComboBox fx:id="terminartFilter" prefWidth="150"/>
+                <CheckBox fx:id="showCancelledCheckbox" text="Abgesagte anzeigen"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Filter zurücksetzen" onAction="#handleResetFilter"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Hauptbereich -->
+    <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true">
+            <GridPane fx:id="calendarGrid" hgap="1" vgap="1" styleClass="calendar-grid">
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+            </GridPane>
+        </ScrollPane>
+    </center>
+    
+    <!-- Seitenleiste für Tagesansicht -->
+    <right>
+        <VBox fx:id="dayDetailPanel" prefWidth="300" spacing="10" visible="false" managed="false">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Label text="Termindetails" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="dayAppointmentsList" spacing="5"/>
+            </ScrollPane>
+        </VBox>
+    </right>
+    
+    <!-- Statusleiste -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="status-bar">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Termine geladen"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="appointmentCountLabel" text="0 Termine"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>

@@ -163,3 +163,90 @@
     -fx-border-color: red;
     -fx-border-width: 2px;
 }
+
+/* Kalender-Styles */
+.calendar-grid {
+    -fx-background-color: #f5f5f5;
+}
+
+.calendar-month-label {
+    -fx-text-fill: #2c5aa0;
+    -fx-font-weight: bold;
+    -fx-padding: 0 20 0 20;
+}
+
+.calendar-day-box {
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+    -fx-background-color: white;
+    -fx-min-height: 80;
+}
+
+.calendar-day-box:hover {
+    -fx-background-color: #f8f8f8;
+    -fx-cursor: hand;
+}
+
+.calendar-today {
+    -fx-background-color: #e3f2fd;
+}
+
+.calendar-other-month {
+    -fx-background-color: #fafafa;
+}
+
+/* Termin-Styles */
+.appointment-card {
+    -fx-background-radius: 3;
+    -fx-padding: 2 5;
+    -fx-text-fill: white;
+}
+
+.appointment-card-green {
+    -fx-background-color: #4CAF50;
+}
+
+.appointment-card-blue {
+    -fx-background-color: #2196F3;
+}
+
+.appointment-card-red {
+    -fx-background-color: #F44336;
+}
+
+.appointment-card-orange {
+    -fx-background-color: #FF9800;
+}
+
+.appointment-card-purple {
+    -fx-background-color: #9C27B0;
+}
+
+/* Zeit-Slots */
+.time-slot-available {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-padding: 5 10;
+    -fx-background-radius: 3;
+}
+
+.time-slot-available:hover {
+    -fx-background-color: #45a049;
+    -fx-cursor: hand;
+}
+
+.time-slot-occupied {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+}
+
+/* Kalender Toolbar */
+.calendar-toolbar {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10;
+}
+
+.calendar-nav-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
