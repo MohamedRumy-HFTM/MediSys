@@ -1,5 +1,6 @@
 ch/medisys/controller/LoginController.class
 ch/medisys/controller/AppointmentFormController.class
+ch/medisys/controller/PatientManagementController.class
 ch/medisys/controller/AppointmentFormController$MitarbeiterItem.class
 ch/medisys/util/PasswordHashGenerator.class
 ch/medisys/controller/PatientListController$2$1.class
@@ -16,6 +17,7 @@ ch/medisys/util/SessionManager.class
 ch/medisys/dao/TerminDAO.class
 ch/medisys/util/FixPasswords.class
 ch/medisys/dao/PatientDAO.class
+ch/medisys/controller/PatientManagementController$1.class
 ch/medisys/util/DatabaseConnection.class
 ch/medisys/controller/PatientListController.class
 ch/medisys/Main.class

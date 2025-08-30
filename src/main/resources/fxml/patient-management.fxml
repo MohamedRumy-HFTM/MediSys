@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="ch.medisys.controller.PatientManagementController"
+            prefWidth="1000" prefHeight="600">
+    
+    <!-- Toolbar -->
+    <top>
+        <VBox spacing="10">
+            <ToolBar>
+                <Label text="Patientenverwaltung" styleClass="module-title">
+                    <font>
+                        <Font size="18.0" name="System Bold"/>
+                    </font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Neuer Patient" onAction="#handleNewPatient" styleClass="primary-button"/>
+                <Button text="Bearbeiten" fx:id="editButton" onAction="#handleEditPatient" disable="true"/>
+                <Button text="Löschen" fx:id="deleteButton" onAction="#handleDeletePatient" disable="true"/>
+                <Separator orientation="VERTICAL"/>
+                <Button text="Exportieren" onAction="#handleExport"/>
+            </ToolBar>
+            
+            <!-- Suchbereich -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets left="10" right="10" top="5" bottom="5"/>
+                </padding>
+                <Label text="Suche:"/>
+                <TextField fx:id="searchField" prefWidth="300" promptText="Name, Versicherungsnummer..."/>
+                <Button text="Suchen" onAction="#handleSearch"/>
+                <Button text="Zurücksetzen" onAction="#handleResetSearch"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Gefiltert:"/>
+                <CheckBox fx:id="activeOnlyCheckbox" text="Nur aktive Patienten" selected="true"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <!-- Hauptbereich mit Tabelle -->
+    <center>
+        <TableView fx:id="patientTable">
+            <columns>
+                <TableColumn fx:id="patientIdColumn" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="nachnameColumn" text="Nachname" prefWidth="150"/>
+                <TableColumn fx:id="vornameColumn" text="Vorname" prefWidth="150"/>
+                <TableColumn fx:id="geburtsdatumColumn" text="Geburtsdatum" prefWidth="100"/>
+                <TableColumn fx:id="geschlechtColumn" text="Geschlecht" prefWidth="80"/>
+                <TableColumn fx:id="telefonColumn" text="Telefon" prefWidth="120"/>
+                <TableColumn fx:id="emailColumn" text="Email" prefWidth="200"/>
+                <TableColumn fx:id="krankenkasseColumn" text="Krankenkasse" prefWidth="150"/>
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+            </columnResizePolicy>
+        </TableView>
+    </center>
+    
+    <!-- Detailbereich rechts -->
+    <right>
+        <VBox fx:id="detailPanel" prefWidth="350" spacing="10" visible="false" managed="false">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+            </padding>
+            <Label text="Patientendetails" styleClass="section-title">
+                <font>
+                    <Font name="System Bold" size="16.0"/>
+                </font>
+            </Label>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="detailsContent" spacing="5"/>
+            </ScrollPane>
+            <HBox spacing="10">
+                <Button text="Historie" onAction="#handleShowHistory"/>
+                <Button text="Termine" onAction="#handleShowAppointments"/>
+                <Button text="Behandlungen" onAction="#handleShowTreatments"/>
+            </HBox>
+        </VBox>
+    </right>
+    
+    <!-- Statusleiste -->
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="status-bar">
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+            <Label fx:id="statusLabel" text="Bereit"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="patientCountLabel" text="0 Patienten"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>
